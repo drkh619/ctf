@@ -1,7 +1,7 @@
 <?php
-    $filename = '../data/users.json';
+    //$filename = '../data/users.json';
     if(isset($_POST["user"],$_POST["password"])){
-        $users = json_decode(file_get_contents( $filename), associative: true);
+        $users = json_decode(file_get_contents(filename: '../data/users.json'), associative: true);
         $user = $_POST["user"];
         $password = md5($_POST["password"]);
         
@@ -16,7 +16,7 @@
                 'cookie'    => $hash
             );
             
-            file_put_contents( $filename, json_encode( $users )  );
+            file_put_contents( filename: '../data/users.json', json_encode( $users )  );
             setcookie('token',$hash,time()+3600,'/');
             header(header: "Location: ./profile.php");
             exit(); 
